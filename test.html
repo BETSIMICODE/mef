@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="mg" data-lang="mg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MEF Madagascar · DGI / CF3 – Portail d’information</title>
+  <meta name="description" content="Portail d’information moderne pour le Ministère de l’Économie et des Finances (MEF) – Direction Générale des Impôts (DGI) – Centre Fiscal CF3 : démarches, pièces à fournir, divisions et contacts." />
+  <meta name="theme-color" content="#0b8e78" />
+  <style>
+    /* ---------- Design System ---------- */
+    :root{
+      --brand:#0b8e78; --brand-2:#0aa57a; --brand-ink:#0b3f39;      
+      --gold:#c8a24a; --bg:#0f172a; --panel:#0b1220; --muted:#94a3b8; --text:#e6eef7;
+      --ok:#16a34a; --warn:#f59e0b; --danger:#ef4444;
+      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background:
+      radial-gradient(1000px 1000px at 10% -20%, rgba(10,165,122,.2), transparent),
+      radial-gradient(1000px 1000px at 110% 10%, rgba(200,162,74,.15), transparent),
+      var(--bg);color:var(--text)}
+    a{color:var(--brand-2);text-decoration:none}
+    a:hover{text-decoration:none; transform: translateY(-2px)!important; text-shadow: white 0px 0px 1px;}
+    .container{width:min(1200px,92vw);margin:0 auto}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;border:1px solid #1f2937;border-radius:999px;padding:.25rem .75rem;background:#0a0f1d;color:#cbd5e1}
+    .btn{appearance:none;border:0;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;padding:.85rem 1.1rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid #1f2937;color:#e2e8f0}
+    .btn:active{transform:translateY(1px)}
+    .tag{display:inline-block;background:#0b1220;border:1px solid #1e293b;border-radius:10px;padding:.15rem .5rem;color:#93c5fd}
+    .grid{display:grid;gap:1.2rem}
+    #themeSwitch{
+        cursor: pointer!important;
+    }
+    @media (min-width:720px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    @media (min-width:980px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
+
+    /* ---------- Header / Nav ---------- */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.7);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid rgba(148, 163, 184, 0)}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.3px}
+    .brand .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:conic-gradient(from 220deg,var(--brand),#126f5f,#125348,var(--brand));border:1px solid #0b3f39;box-shadow:inset 0 0 0 2px rgba(255,255,255,.04),var(--shadow)}
+    .brand img.logo{height:80px;width:auto;border-radius:8px;background:none;border:0;box-shadow:none}
+    .brand strong{font-size:1.1rem}
+    .nav-links{display:flex;gap:.9rem;align-items:center}
+    .nav-links a{padding:.55rem .7rem;border-radius:10px}
+    .nav-links a:hover{background:#0a0f1d; text-decoration: none;}
+    #menuBtn{display:none}
+    @media (max-width:820px){
+      #menuBtn{display:inline-flex; z-index: 200!important;}
+      .nav-links{position:fixed;inset:56px 0 auto 0;display:grid;gap:.6rem;padding:1rem;background:rgba(11,18,32,.95);border-bottom:1px solid #111827;transform:translateY(-140%);transition:transform .35s ease}
+      .nav-links.open{transform:translateY(0)}
+      .nav-links .lang-select{justify-self:end}
+      .nav-right{z-index: 200!important;}
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{position:relative;overflow:hidden}
+    .hero .wrap{display:grid;gap:1.4rem;align-items:center;padding:4.5rem 0 3rem}
+    .kicker{display:flex;gap:.6rem;flex-wrap:wrap}
+    h1{font-size:clamp(28px,5vw,44px);line-height:1.12;margin:0}
+    .lead{color:#cbd5e1;max-width:70ch}
+    .stats{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.6rem}
+    .stat{padding:.6rem .8rem;border-radius:12px;border:1px solid #1e293b00;background:#0b1220}
+    .hero-blob{position:absolute;inset:auto -20% -40% auto;width:70vw;max-width:900px;min-height:360px;background:
+      radial-gradient(closest-side, rgba(10,165,122,.18), transparent 68%),
+      radial-gradient(closest-side, rgba(200,162,74,.14), transparent 60%);filter:blur(40px);transform:rotate(-12deg)}
+
+    /* ---------- Cards ---------- */
+    .card{background:linear-gradient(180deg,#0b1220,#0a0f1d);border:1px solid #1f293700;border-radius:var(--radius);box-shadow:var(--shadow);padding:1.1rem}
+    .card h3{margin:.2rem 0 .6rem}
+    .icon{width:22px;height:22px;display:inline-block}
+
+    /* ---------- Accordion ---------- */
+    details{border:1px solid #1f2937;border-radius:14px;background:#0a0f1d;padding:.6rem 1rem}
+    details+details{margin-top:.8rem}
+    details[open]{background:#0b1220}
+    summary{list-style:none;display:flex;align-items:center;gap:.8rem;cursor:pointer}
+    summary::-webkit-details-marker{display:none}
+    summary .chev{transition:transform .25s ease}
+    details[open] summary .chev{transform:rotate(90deg)}
+    .epingleContent{
+      display: flex;
+      align-items: center;
+      /* background-color: red; */
+      /* width: 100%; */
+    }
+    .epingle{width:40px;height:40px;vertical-align:middle;margin-right:15px;}
+
+
+
+    /* ---------- Sections ---------- */
+    section{padding:3rem 0;border-top:1px dashed rgba(148,163,184,.15)}
+    section .title{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.2rem}
+    h2{margin:0;font-size:clamp(22px,3.6vw,30px)}
+    .title small{color:var(--muted)}
+
+    /* ---------- Footer ---------- */
+    footer{padding:2.2rem 0;color:#9aa7bb}
+
+    /* ---------- Motion ---------- */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+    .mef-banner{display:flex;justify-content:center;padding:.25rem 0;background:rgba(11,18,32,.85);border-bottom:1px solid rgba(148,163,184,.08)}
+    .mef-banner img{width:min(1200px,96vw);height:auto;display:block}
+    @media (max-width:640px){.mef-banner img{max-height:54px;width:auto}}
+
+    /* ---------- MODE CLAIR ---------- */
+    :root[data-theme="light"]{--bg:#f8fafc; --panel:#fff; --text:#0f172a; --muted:#475569}
+    [data-theme="light"] body{color:var(--text);background:
+      radial-gradient(1000px 1000px at 10% -20%, rgba(10,165,122,.08), transparent),
+      radial-gradient(1000px 1000px at 110% 10%, rgba(200,162,74,.10), transparent),
+      var(--bg)}
+    [data-theme="light"] header{background:rgba(255,255,255,.75);border-bottom:1px solid #e2e8f0}
+    [data-theme="light"] .nav-links a:hover{background:#f1f5f9}
+    @media (max-width:820px){[data-theme="light"] .nav-links{background:rgba(255,255,255,.98);border-bottom:1px solid #e2e8f0}}
+    [data-theme="light"] .chip{border-color:#e2e8f0;background:#fff;color:#0f172a}
+    [data-theme="light"] .btn.ghost{border-color:#e2e8f0;color:#0f172a}
+    [data-theme="light"] .tag{background:#fff;border-color:#e2e8f0;color:#0b8e78}
+    [data-theme="light"] .stat{border-color:#e2e8f0;background:#fff}
+    [data-theme="light"] .card{background:#fff;border-color:#e2e8f0}
+    [data-theme="light"] details{background:#fff;border-color:#e2e8f0}
+    [data-theme="light"] details[open]{background:#f8fafc}
+    [data-theme="light"] .ph{background:linear-gradient(180deg,#fff,#f8fafc);border-color:#e2e8f0;color:#64748b}
+    [data-theme="light"] footer{color:#475569}
+    [data-theme="light"] .welcomeColor{color:#192330}
+    /* ---------- SWITCH THÈME ---------- */
+    .theme-toggle{
+      position:fixed; top:10px; right:12px; z-index:100;
+      display:flex; align-items:center; gap:.5rem; font-size:14px;
+    }
+    .theme-toggle input{position:absolute; opacity:0; pointer-events:none}
+    .theme-toggle .switch{display:flex; align-items:center; gap:.5rem; padding:.35rem .5rem; border-radius:999px; background:rgba(11,18,32,.6); border:1px solid #1f2937; backdrop-filter:saturate(140%) blur(6px)}
+    .theme-toggle .sun,.theme-toggle .moon{line-height:1}
+    .theme-toggle .track{position:relative; width:48px; height:24px; border-radius:999px; background:#0a0f1d; border:1px solid #1f2937}
+    .theme-toggle .thumb{position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:999px; background:linear-gradient(135deg,var(--gold),#ffd57a); box-shadow:0 4px 10px rgba(0,0,0,.25); transition:transform .25s ease}
+    #themeSwitch:checked + label .thumb{ transform:translateX(24px) }
+    [data-theme="light"] .theme-toggle .switch{background:rgba(255,255,255,.7); border:1px solid #e2e8f0}
+    [data-theme="light"] .theme-toggle .track{background:#fff; border-color:#e2e8f0}
+
+    /* ---------- Mobile placement switch ---------- */
+    @media (max-width:820px){
+      .theme-toggle{top: 15%; left:80%; right:auto; transform:translateX(-50%); z-index: 5;}
+    }
+
+    /* ---------- Langues : visibilité ---------- */
+    html[data-lang="mg"] .i18n-fr{display:none !important}
+    html[data-lang="fr"] .i18n-mg{display:none !important}
+
+    /* ---------- Sélecteur langue ---------- */
+    .lang-select{
+      appearance:none;background:#0a0f1d;border:1px solid #1f2937;color:#e5e7eb;
+      padding:.45rem .6rem;border-radius:10px;font-weight:600;cursor:pointer
+    }
+    [data-theme="light"] .lang-select{background:#fff;border-color:#e2e8f0;color:#0f172a}
+
+    /* ---------- Bouton Chat sous le switch ---------- */
+    .chat-launch{
+      position:fixed; right:12px; top:70px; z-index:100;
+      padding:.55rem .8rem; border-radius:999px; border:1px solid #1f293700;
+      background:#006fd6; color:#e5e7eb; font-weight:700; cursor:pointer;
+      box-shadow: #080c0c6c 0px 0px 5px 0px;
+    }
+    .chatbotgif{
+      width:30px; height:30px; vertical-align:middle; margin-right:.4rem;
+    }
+    .chat-launch:hover{
+      transform: translateY(-2px);
+      transition: ease-in-out 0.2s;
+      box-shadow: #9ffff4 0px 0px 5px 0px;
+    }
+    [data-theme="light"] .chat-launch{background:#fff;border-color:#e2e8f0;color:#0f172a}
+    @media (max-width:820px){
+      .chat-launch{ top: calc(10% + 37px); left:10%; transform:translateX(0%); right:auto; z-index: 5; }
+    }
+
+    /* ---------- Panneau Chat ---------- */
+    .chat-panel{
+      position:fixed; right:12px; bottom:16px; width:min(380px,94vw);
+      background:var(--panel); color:var(--text); border:1px solid #1f2937;
+      border-radius:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; overflow:hidden; z-index:99
+    }
+    .chat-header{
+      display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+      padding:.6rem .8rem; border-bottom:1px solid #1f2937; background:rgba(11,18,32,.6)
+    }
+    .chat-header strong{font-size:.95rem}
+    .chat-close{background:transparent;border:0;color:inherit;font-size:1.2rem;cursor:pointer}
+    .chat-messages{padding:.8rem; display:flex; flex-direction:column; gap:.6rem; max-height:48vh; overflow:auto}
+    .msg{max-width:85%; padding:.6rem .75rem; border-radius:12px; line-height:1.45}
+    .msg.user{align-self:flex-end; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff}
+    .msg.bot{align-self:flex-start; background:#0a0f1d; border:1px solid #1f2937}
+    [data-theme="light"] .msg.bot{background:#fff;border-color:#e2e8f0}
+    .chat-input{display:flex; gap:.5rem; padding:.6rem; border-top:1px solid #1f2937; background:#0a0f1d}
+    [data-theme="light"] .chat-input{background:#fff;border-color:#e2e8f0}
+    .chat-input input{flex:1; padding:.6rem .75rem; border-radius:10px; border:1px solid #334155; background:#0b1220; color:#e5e7eb}
+    [data-theme="light"] .chat-input input{background:#fff; color:#0f172a; border-color:#e2e8f0}
+    .chat-input button{padding:.6rem .9rem; border-radius:10px}
+    .hidden{display:none !important}
+    .tiny{font-size:.8rem;color:#94a3b8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <img class="logo" src="./MEF_Madagascar_2024.png" alt="Logo MEF" />
+          <div>
+            <strong>MEF Madagascar</strong><br/>
+            <span style="font-size:.84rem;color:#9fb9b3">DGI · Centre Fiscal CF3</span>
+          </div>
+        </div>
+        <div class="nav-right">
+          <img src="./icons8-menu-48.png" id="menuBtn" class="btn ghost" aria-expanded="false" aria-controls="menu" alt="Menu"/>
+          <div id="menu" class="nav-links" role="navigation" aria-label="Navigation principale">
+            <a href="#organisation">Organisation</a>
+            <a href="#services">Démarches</a>
+            <a href="#is">IS</a>
+            <a href="#renouvellement">Renouvellement</a>
+            <a href="#attestations">Attestations</a>
+            <a href="#contact">Contact</a>
+            <!-- Onglet Langue -->
+            <label for="lang" style="position:absolute;left:-9999px">Langue</label>
+            <select id="lang" class="lang-select" aria-label="Choisir la langue">
+              <option value="mg">MG</option>
+              <option value="fr">FR</option>
+            </select>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SWITCH thème -->
+  <div class="theme-toggle" role="group" aria-label="Choix du thème">
+    <input type="checkbox" id="themeSwitch" aria-label="Basculer clair/sombre">
+    <label class="switch" for="themeSwitch">
+      <span class="sun" aria-hidden="true">🌙</span>
+      <span class="track"><span class="thumb"></span></span>
+      <span class="moon" aria-hidden="true">☀️</span>
+    </label>
+  </div>
+
+  <!-- Bouton lancement chat juste sous le switch -->
+  <button id="chatOpen" class="chat-launch">💬 Posez vos questions</button>
+
+  <!-- Panneau chat -->
+  <div id="chatPanel" class="chat-panel hidden" aria-live="polite">
+    <div class="chat-header">
+      <strong><img src="icons8-chatbot.gif" class="chatbotgif"/>  CF3 – IA</strong>
+      <button id="chatClose" class="chat-close" aria-label="Fermer">×</button>
+    </div>
+    <div id="chatMessages" class="chat-messages" role="log" aria-live="polite"></div>
+    <div class="chat-input">
+      <input id="chatInput" type="text" placeholder="Manontania amin’ny teny Malagasy…"/>
+      <button id="chatSend" class="btn">Envoyer</button>
+    </div>
+    <div class="tiny" style="padding:.2rem .8rem .6rem">
+      Ceci est un prototype, l'agent IA répond selon sa base de connaissance
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-blob" aria-hidden="true"></div>
+      <div class="container wrap">
+        <div class="kicker">
+          <span class="chip">Portail d’information</span>
+          <span class="chip">Version démo – single file</span>
+          <span class="chip">FR · MG</span>
+        </div>
+        <h1>Ministère de l’Économie & des Finances · <span style="color:var(--gold)">Direction Générale des Impôts</span></h1>
+        <p class="lead i18n-mg welcomeColor" >Tongasoa eto amin’ny pejin’ny <strong>Centre Fiscal CF3</strong>, ao anatin’ny DGI/MEF. Hahita mazava eto ianao ny <em>antontan-taratasy ilaina</em>, ny <em>dingana</em> ary ny <em>fifandraisana</em> amin’ny raharaha (NIF, fanambarana <abbr title="Impôt sur les Sociétés">IS</abbr>, kara-fisitra, taratasy fanamarinana, sns.).</p>
+        <p class="lead i18n-fr welcomeColor">Bienvenue sur le site d’information du <strong>Centre Fiscal CF3</strong> (DGI/MEF). Retrouvez clairement <em>les pièces à fournir</em>, <em>les étapes</em> et <em>les contacts</em> pour vos démarches (NIF, déclaration <abbr title="Impôt sur les Sociétés">IS</abbr>, carte fiscale, attestations, etc.).</p>
+        <div class="stats">
+          <div class="stat">4 divisions : <strong>Contrôle · Enregistrement · Accueil · Recette</strong></div>
+          <div class="stat">Horaires CF3 : <strong>08:00–16:00</strong> (Lun–Ven)</div>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+          <a class="btn" href="#services">Voir les démarches</a>
+          <button class="btn ghost" onclick="window.print()">Imprimer la page</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORGANISATION -->
+    <section id="organisation">
+      <div class="container">
+        <div class="title">
+          <h2>Organisation · DGI & CF3 <span class="tag">Fandaminana</span></h2>
+          <small>Le CF3 est rattaché à la DGI (MEF). Il comprend 4 divisions opérationnelles.</small>
+        </div>
+        <div class="grid cols-4 reveal">
+          <article class="card"><h3>Accueil</h3><p>Réception, information, orientation des contribuables, prise de rendez-vous.</p></article>
+          <article class="card"><h3>Enregistrement</h3><p>Immatriculation (NIF), tenue des dossiers, délivrance des cartes fiscales.</p></article>
+          <article class="card"><h3>Recette</h3><p>Encaissement, bordereaux, quittances et suivi des paiements.</p></article>
+          <article class="card"><h3>Contrôle</h3><p>Vérification, conformité documentaire et contrôle fiscal ciblé.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (MG par défaut / FR via select) -->
+    <section id="services">
+      <div class="container">
+        <!-- ancres -->
+        <div id="is"></div>
+        <div id="renouvellement"></div>
+        <div id="attestations"></div>
+
+        <!-- MG -->
+        <div class="i18n-mg">
+          <div class="title">
+            <h2>Serivisy & Dingana</h2>
+            <small>Safidio ny sokajy hijerena ny antontan-taratasy sy dingana.</small>
+          </div>
+
+          <!-- NIFONLINE -->
+          <details class="reveal" open>
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle"/>Fisoratana anarana amin’ny NIFONLINE</strong>
+            </summary>
+            <div class="grid cols-2" style="margin-top:.8rem">
+              <div class="card">
+                <h3>Ho an’ny olon-tsotra</h3>
+                <ul>
+                  <li>Original sy kopian’ny <strong>Kara-panondrom-pirenena (CIN)</strong></li>
+                  <li><strong>Kara-mponina</strong> ho an’ny vahiny</li>
+                  <li><strong>Taratasy fanamarinam-ponenana</strong> sy/na <strong>faktioran’ny JIRAMA</strong> (&lt; 3 volana)</li>
+                  <li><strong>Sarin-toerana</strong> (plan de repérage) voamarina amin’ny sefom-pokontany</li>
+                  <li><strong>Rosia</strong> sy <strong>taratasy fandoavana</strong> ny <strong>IS</strong> na <strong>IR</strong></li>
+                  <li><strong>Kara-panjakana (carte statistique)</strong></li>
+                  <li><strong>Taratasy fananan-trano</strong> (na fifanarahana <em>fanofana/domiciliation</em>)</li>
+                  <li><strong>Taratasy fanomezan-dalana</strong> voamarin’ny manam-pahefana raha solontena</li>
+                  <li>Antontan-taratasy hafa (fahazoan-dalana ministera, kara-grisa, licence)</li>
+                  <li><strong>Laharana fanondroana</strong> ny fangatahana</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Ho an’ny orinasa (Personnes morales)</h3>
+                <ul>
+                  <li><strong>Fitsipiky ny fiaraha-miasa (Statuts)</strong></li>
+                  <li>Original sy kopian’ny <strong>CIN</strong> an’ny tompon’andraikitra voalohany</li>
+                  <li><strong>Kara-mponina</strong> & <strong>CIPENS</strong> ho an’ny vahiny</li>
+                  <li><strong>Taratasy fanamarinam-ponenana</strong> an’ny tompon’andraikitra voalohany sy/na <strong>faktioran’ny JIRAMA</strong> (&lt; 3 volana)</li>
+                  <li><strong>Sarin-toerana</strong> voamarina amin’ny sefom-pokontany</li>
+                  <li><strong>Taratasy fanamarinana fisian’ny orinasa</strong> (certificat d’existence)</li>
+                  <li><strong>Rosia</strong> sy <strong>taratasy fandoavana</strong> ny IS</li>
+                  <li><strong>Kara-panjakana</strong></li>
+                  <li><strong>Taratasy fananan-trano</strong> (fifanekena fanofana, domiciliation, taratasy famindram-ponenana)</li>
+                  <li><strong>Taratasy fanomezan-dalana</strong> voamarin’ny manam-pahefana raha solontena</li>
+                  <li>Antontan-taratasy hafa (fahazoan-dalana ministera, kara-grisa, licence)</li>
+                  <li><strong>Laharana fanondroana</strong> ny fangatahana</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- IS -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Fanambarana ny HETRA IS (Impôt sur les Sociétés)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <h3>Antontan-taratasy ilaina</h3>
+              <ul>
+                <li><strong>Taratasy fanambarana</strong> (omen’ny CF3) – <em>3 dika mitovy</em></li>
+                <li><strong>Kara-fisitra</strong></li>
+                <li><strong>Kara-panjakana (statistique)</strong></li>
+                <li><strong>Faktioran’ny JIRAMA</strong> (raha tompon-trano)</li>
+                <li><strong>Kopian’ny livret de famille</strong> na <strong>CIN</strong> (raha anaran’ny ray aman-dreny maty no faktiora → <em>mila porofo maha-olona akaiky</em>)</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Renouvellement -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong><img src="icons8-épingle-50.png" class="epingle" > Fanavaozana Kara-Fisitra</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Fanavaozana amin’ny NIFONLINE</strong></li>
+                <li><strong>Rosia IS</strong> (3 dika) miaraka amin’ny <strong>vola miditra 3 taona farany</strong></li>
+              </ul>
+              <p class="muted" style="color:#94a3b8;margin:.6rem 0 0"><strong>Fanamarihana</strong> : Raha misy fiovana eo amin’ny asa atao, dia tsy maintsy havaozina amin’ny <strong>NIFONLINE</strong>.</p>
+            </div>
+          </details>
+
+          <!-- Attestations MG -->
+          <details class="reveal" id="attestations-mg">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Taratasy fanamarinana & Taratasy ofisialy</strong>
+            </summary>
+            <div class="grid cols-2" style="margin-top:.8rem">
+              <div class="card">
+                <h3>Tsy mandoa hetra (fiara)</h3>
+                <ul>
+                  <li>Fangatahana an-tsoratra</li>
+                  <li><strong>Kara-grisa</strong> (original + kopia)</li>
+                  <li><strong>Taratasy fanamarinana</strong> farany</li>
+                  <li><strong>Karatra fisotroan-dronono</strong> / taratasy fandoavam-bola / <strong>kara-fisitra</strong></li>
+                  <li><strong>Taratasy fanamarinam-ponenana</strong></li>
+                  <li><strong>Kopia CIN</strong></li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Maha-Resident fiscal</h3>
+                <ul>
+                  <li>Fangatahana + <strong>fanambarana amin’ny voninahitra</strong> (vola miditra eto an-toerana & any ivelany)</li>
+                  <li><strong>Kara-mponina</strong></li>
+                  <li><strong>Kara-panondro matihanina</strong> (raha manao asa)</li>
+                  <li><strong>Tatitra karama</strong></li>
+                  <li><strong>Taratasy sy rosia fandoavam-bola</strong> (manokana na an’ny orinasa)</li>
+                  <li><strong>Lisitry ny mpandray tombontsoa</strong></li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Fandoavana IRSA</h3>
+                <ul>
+                  <li>Fangatahana an-tsoratra (<strong>indroa</strong>)</li>
+                  <li>Dika mitovy <strong>fanambarana IRSA</strong> + rosia sy tatitra</li>
+                  <li><strong>Kara-fisitra</strong> an’ny mpampiasa</li>
+                  <li><strong>Taratasy fanamarinam-ponenan’ny mpiasa</strong></li>
+                  <li><strong>Kopia CIN</strong> an’ny mpiasa</li>
+                  <li><strong>Taratasy fanomezan-dalana</strong> raha solontena</li>
+                  <li><strong>Nomeraon-telefaonina</strong> an’ilay mpangataka</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Tsy mandoa hetra (fidiram-bola/synthétique)</h3>
+                <ul>
+                  <li>Fangatahana an-tsoratra (<strong>indroa</strong>)</li>
+                  <li><strong>Kopia</strong> ny taratasy fanamarinana farany</li>
+                  <li><strong>Taratasy fanamarinam-ponenana</strong></li>
+                  <li><strong>Taratasy avy amin’ny mpiantoka</strong> voamarina (sefom-pokontany)</li>
+                  <li><strong>Karatra fisotroan-dronono</strong> (raha misotro ronono)</li>
+                  <li><strong>Taratasy fanamarinana tsy an’asa</strong> (raha tsy miasa)</li>
+                  <li><strong>Kopia CIN</strong></li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Fampitsaharana / Licences -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Fampitsaharana asa (PM)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Tatitry ny famaranana ara-bola</strong> voasonia</li>
+                <li><strong>Statuts</strong> ny orinasa</li>
+                <li><strong>Fangatahana fampitsaharana</strong> (<strong>indroa</strong>)</li>
+                <li><strong>PV famaranana</strong> voasoratra</li>
+                <li><strong>Kopia IS/IR farany</strong> + rosia</li>
+                <li><strong>Taratasy fananan-trano</strong> (titre na rôle IFPB)</li>
+                <li><strong>Fifanekena fanofana farany</strong> (na fanafoanana)</li>
+                <li><strong>Famerenana ny kara-fisitra</strong></li>
+                <li><strong>Fanambarana rehetra</strong> (IRSA, IS, IR, TVA, licence) ho ara-dalàna</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="reveal" id="renouvellement-mg">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Fahazoan-dalana & Licence (oh: toaka)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Fiche de renseignement</strong> avy amin’ny sefom-pokontany</li>
+                <li><strong>CIN</strong> (original sy kopia)</li>
+                <li><strong>Casier judiciaire</strong> &lt; 3 volana</li>
+                <li><strong>Taratasy fanamarinam-ponenana</strong></li>
+                <li><strong>Sarin-toerana</strong> voamarina</li>
+                <li><strong>Sarin’ny toerana</strong> (efitrano fivarotana/fisotroana)</li>
+                <li><strong>Rosia FIPB</strong> na <strong>taratasy fananan-trano</strong></li>
+                <li><strong>Fitsipika</strong> + fanendrena ny tale (raha orinasa)</li>
+                <li><strong>Dérogation spéciale</strong> (raha ilaina)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <!-- FR -->
+        <div class="i18n-fr">
+          <div class="title">
+            <h2>Services & Démarches</h2>
+            <small>Choisissez une rubrique pour voir les pièces à fournir et les étapes.</small>
+          </div>
+
+          <!-- NIFONLINE -->
+          <details class="reveal" open>
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Immatriculation sur NIFONLINE</strong>
+            </summary>
+            <div class="grid cols-2" style="margin-top:.8rem">
+              <div class="card">
+                <h3>Pour les personnes physiques</h3>
+                <ul>
+                  <li>Original et <strong>copie de la CIN</strong></li>
+                  <li><strong>Carte de résident</strong> pour les étrangers</li>
+                  <li><strong>Certificat de résidence</strong> et/ou <strong>facture JIRAMA</strong> (&lt; 3 mois)</li>
+                  <li><strong>Plan de repérage</strong> visé par le Chef Fokontany</li>
+                  <li><strong>Récépissé et bordereau</strong> de versement de l’<strong>IS</strong> ou de l’<strong>IR</strong></li>
+                  <li><strong>Carte statistique</strong></li>
+                  <li><strong>Titre de propriété du local</strong> (ou bail/domiciliation)</li>
+                  <li><strong>Procuration légalisée</strong> si représentant</li>
+                  <li>Autres pièces originales (autorisation ministérielle, carte grise, licence)</li>
+                  <li><strong>Référence de la demande</strong></li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Pour les personnes morales</h3>
+                <ul>
+                  <li><strong>Statuts de la société</strong></li>
+                  <li>Original et <strong>copie de la CIN</strong> du premier responsable</li>
+                  <li><strong>Carte de résident</strong> et <strong>CIPENS</strong> pour les étrangers</li>
+                  <li><strong>Certificat de résidence</strong> du premier responsable et/ou <strong>facture JIRAMA</strong> (&lt; 3 mois)</li>
+                  <li><strong>Plan de repérage</strong> visé par le chef Fokontany</li>
+                  <li><strong>Certificat d’existence</strong></li>
+                  <li><strong>Récépissé et bordereau</strong> de versement de l’IS</li>
+                  <li><strong>Carte statistique</strong></li>
+                  <li><strong>Titre de propriété du local</strong> (bail, domiciliation, lettre d’occupation)</li>
+                  <li><strong>Procuration légalisée</strong> si représentant</li>
+                  <li>Autres pièces originales (autorisation ministérielle, carte grise, licence)</li>
+                  <li><strong>Référence de la demande</strong></li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- IS -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Déclaration d’Impôt sur les Sociétés (IS)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <h3>Dossier à fournir</h3>
+              <ul>
+                <li><strong>Formulaire de déclaration</strong> (fourni au CF3) – <em>3 exemplaires</em></li>
+                <li><strong>Carte fiscale</strong></li>
+                <li><strong>Carte statistique</strong></li>
+                <li><strong>Facture JIRAMA</strong> (si propriétaire)</li>
+                <li><strong>Photocopie livret de famille</strong> ou <strong>CIN</strong> (si la facture est au nom d’un parent décédé → <em>justificatif de filiation obligatoire</em>)</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Renouvellement -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Renouvellement de Carte Fiscale</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Mise à jour sur NIFONLINE</strong></li>
+                <li><strong>Bordereaux d’IS</strong> (3 exemplaires) avec le <strong>chiffre d’affaires des 3 dernières années</strong></li>
+              </ul>
+              <p class="muted" style="color:#94a3b8;margin:.6rem 0 0"><strong>NB</strong> : Toute modification de l’activité doit être déclarée via <strong>NIFONLINE</strong>.</p>
+            </div>
+          </details>
+
+          <!-- Attestations FR -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Attestations & Certificats</strong>
+            </summary>
+            <div class="grid cols-2" style="margin-top:.8rem">
+              <div class="card">
+                <h3>Non-imposition (véhicule)</h3>
+                <ul>
+                  <li><strong>Demande</strong> sur papier libre</li>
+                  <li><strong>Carte grise</strong> (originale + photocopie)</li>
+                  <li>Dernière attestation</li>
+                  <li><strong>Bulletin de paie</strong> / <strong>avis de crédit</strong> / <strong>carte fiscale</strong></li>
+                  <li><strong>Certificat de résidence</strong></li>
+                  <li><strong>Photocopie CIN</strong></li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Résident fiscal</h3>
+                <ul>
+                  <li>Demande + <strong>déclaration sur l’honneur</strong> (revenus locaux & étrangers)</li>
+                  <li><strong>Carte de résident</strong></li>
+                  <li>Carte d’identité professionnelle (si activité)</li>
+                  <li><strong>Fiche de paie</strong></li>
+                  <li><strong>Déclarations & reçus d’impôts</strong> (perso/société)</li>
+                  <li><strong>Liste des bénéficiaires</strong> de revenus</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Paiement d’IRSA</h3>
+                <ul>
+                  <li><strong>Demande</strong> sur papier libre (<strong>x2</strong>)</li>
+                  <li>Copies <strong>déclarations IRSA</strong> + <strong>reçus</strong> + <strong>états nominatifs</strong></li>
+                  <li><strong>Carte fiscale</strong> de l’employeur</li>
+                  <li><strong>Certificat de résidence</strong> de l’employé</li>
+                  <li><strong>CIN</strong> de l’employé (photocopie)</li>
+                  <li><strong>Procuration légalisée</strong> si représentant</li>
+                  <li><strong>Contact téléphonique</strong> du demandeur</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Non-imposition (revenus/synthétique)</h3>
+                <ul>
+                  <li><strong>Demande</strong> sur papier libre (<strong>x2</strong>)</li>
+                  <li><strong>Photocopie de la dernière attestation</strong></li>
+                  <li><strong>Certificat de résidence</strong></li>
+                  <li><strong>Lettre du tuteur</strong> (prise en charge) visée par le Fokontany</li>
+                  <li><strong>Carte de pension</strong> (si retraité)</li>
+                  <li><strong>Attestation de chômage</strong> (si chômeur)</li>
+                  <li><strong>CIN</strong> (photocopie)</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Cessation / Licences -->
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Cessation d’activité (Personnes morales)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Bilan de clôture</strong> signé par le gérant/liquidateur</li>
+                <li><strong>Statuts</strong> de la société</li>
+                <li><strong>Lettre de demande de cessation</strong> (3 exemplaires)</li>
+                <li><strong>PV de dissolution</strong> enregistré</li>
+                <li><strong>Photocopie de la dernière déclaration IS/IR</strong> avec récépissés</li>
+                <li><strong>Justificatif de propriété</strong> (titre ou rôle IFPB)</li>
+                <li><strong>Dernier contrat de bail</strong> (ou lettre de résiliation)</li>
+                <li><strong>Restitution de la carte fiscale</strong></li>
+                <li><strong>Toutes les déclarations fiscales</strong> (IRSA, IS, IR, TVA, licence) doivent être en règle</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>
+              <svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              <strong class="epingleContent"><img src="icons8-épingle-50.png" class="epingle" > Licences & Autorisations (ex. boissons alcoolisées)</strong>
+            </summary>
+            <div class="card" style="margin-top:.8rem">
+              <ul>
+                <li><strong>Fiche de renseignement</strong> signée par le chef Fokontany</li>
+                <li><strong>CIN</strong> (originale et copie)</li>
+                <li><strong>Casier judiciaire</strong> (&lt; 3 mois)</li>
+                <li><strong>Certificat de résidence</strong></li>
+                <li><strong>Plan de repérage</strong> visé par Fokontany</li>
+                <li><strong>Plan du local</strong> (salle de vente/consommation)</li>
+                <li><strong>Quittance FIPB</strong> ou <strong>titre de propriété</strong></li>
+                <li><strong>Statut</strong> + <strong>nomination du gérant</strong> (si société)</li>
+                <li><strong>Dérogation spéciale</strong> (si nécessaire)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="title">
+          <h2>Contact & rendez-vous <span class="tag">Fifandraisana</span></h2>
+          <small>CF3 · DGI – MEF. Merci de venir avec un dossier complet pour un traitement rapide.</small>
+        </div>
+        <div class="grid cols-2 reveal">
+          <div class="card">
+            <h3>Coordonnées</h3>
+            <ul>
+              <li><strong>Centre Fiscal CF3</strong>, Direction Générale des Impôts</li>
+              <li>Heures : Lun–Ven 08:00–16:00</li>
+              <li>Email : <a href="mailto:contact@dgi-cf3.gov.mg">contact@dgi-cf3.gov.mg</a> (exemple)</li>
+              <li>Téléphone : 020 00 000 00 (exemple)</li>
+            </ul>
+            <p class="muted" style="color:#94a3b8">Référent contenu : <strong>Erina</strong> (CF3).</p>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+              <button class="btn ghost" id="openModal">Prendre rendez-vous</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Carte · MEF Madagascar</h3>
+            <div style="border-radius:12px;overflow:hidden;border:1px solid #1f2937">
+              <iframe
+                title="MEF Madagascar"
+                width="100%" height="280" style="border:0"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Minist%C3%A8re%20de%20l%E2%80%99%C3%89conomie%20et%20des%20Finances%20Madagascar%20Antananarivo&z=15&output=embed">
+              </iframe>
+            </div>
+            <p style="margin:.6rem 0 0">
+              <a href="https://www.google.com/maps/search/?api=1&query=MEF+Madagascar+Antananarivo" target="_blank" rel="noopener">Voir sur Google Maps ↗</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+        <p>© <span id="year"></span> MEF – DGI/CF3 (Prototype). Ce site est une <strong>démo</strong></p>
+        <div><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Haut de page</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Rendez-vous modal -->
+  <dialog id="modal" style="border:none;border-radius:16px;background:#0b1220;color:#e5e7eb;padding:0;max-width:520px;box-shadow:var(--shadow)">
+    <form method="dialog" style="padding:1.2rem">
+      <h3 style="margin-top:0">Prendre rendez-vous</h3>
+      <p>Remplissez ces champs (démo – aucune donnée n’est transmise).</p>
+      <div class="grid cols-2">
+        <label>Nom<br/><input required type="text" style="width:100%;padding:.8rem;border-radius:10px;border:1px solid #334155;background:#0a0f1d;color:#e5e7eb"></label>
+        <label>Prénom<br/><input required type="text" style="width:100%;padding:.8rem;border-radius:10px;border:1px solid #334155;background:#0a0f1d;color:#e5e7eb"></label>
+      </div>
+      <div class="grid cols-2" style="margin-top:.6rem">
+        <label>Email<br/><input type="email" style="width:100%;padding:.8rem;border-radius:10px;border:1px solid #334155;background:#0a0f1d;color:#e5e7eb"></label>
+        <label>Téléphone<br/><input type="tel" style="width:100%;padding:.8rem;border-radius:10px;border:1px solid #334155;background:#0a0f1d;color:#e5e7eb"></label>
+      </div>
+      <label style="display:block;margin-top:.6rem">Objet du rendez-vous
+        <select style="width:100%;padding:.8rem;border-radius:10px;border:1px solid #334155;background:#0a0f1d;color:#e5e7eb">
+          <option>Déclaration IS</option>
+          <option>Immatriculation NIF</option>
+          <option>Renouvellement carte fiscale</option>
+          <option>Attestation / Certificat</option>
+          <option>Autre</option>
+        </select>
+      </label>
+      <div style="display:flex;justify-content:flex-end;gap:.6rem;margin-top:1rem">
+        <button class="btn ghost" value="cancel">Annuler</button>
+        <button class="btn" value="ok">Valider</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+    /* ---------- Menu mobile ---------- */
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn?.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    /* ---------- Année footer ---------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- Reveal on scroll ---------- */
+    const io = new IntersectionObserver((els)=>{
+      els.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} })
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    /* ---------- Thème clair/sombre ---------- */
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const themeSwitch = document.getElementById('themeSwitch');
+    function applyTheme(t){
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      if(metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#ffffff' : '#0b8e78');
+      if(themeSwitch) themeSwitch.checked = (t === 'light');
+    }
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(savedTheme);
+    themeSwitch?.addEventListener('change', ()=> applyTheme(themeSwitch.checked ? 'light' : 'dark'));
+
+    /* ---------- Langue MG/FR ---------- */
+    const langSel = document.getElementById('lang');
+    function applyLang(l){
+      document.documentElement.setAttribute('data-lang', l);
+      document.documentElement.lang = l;
+      localStorage.setItem('lang', l);
+      if(langSel) langSel.value = l;
+      // Placeholder chat + bienvenue
+      const chatInput = document.getElementById('chatInput');
+      if(chatInput){
+        chatInput.placeholder = (l==='fr') ? 'Posez une question…' : 'Manontania amin’ny teny Malagasy…';
+      }
+    }
+    const savedLang = localStorage.getItem('lang') || 'mg';
+    applyLang(savedLang);
+    langSel?.addEventListener('change', ()=> applyLang(langSel.value));
+
+    /* ---------- Modal rendez-vous ---------- */
+    const modal = document.getElementById('modal');
+    document.getElementById('openModal')?.addEventListener('click', ()=> modal.showModal());
+    modal?.addEventListener('close', ()=>{ if(modal.returnValue === 'ok') alert('Demande de rendez-vous enregistrée (démo).'); });
+
+    /* ---------- CHATBOT CF3 (Groq) ---------- */
+    const GROQ_API_KEY = "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";
+    const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+    // Nouveau modèle recommandé (ancien "llama3-8b-8192" décommissionné)
+    const MODEL_PRIMARY = "llama-3.1-8b-instant";
+    const MODEL_FALLBACKS = ["llama-3.1-70b-versatile"];
+    // Base de connaissances minimale (FR + MG) injectée au modèle
+    const KB_FR = `
+Vous êtes un agent d'information pour le CF3 (DGI/MEF – Madagascar).
+Repondez UNIQUEMENT à partir de ces points. Si la question sort du périmètre, dites que l'info n'est pas disponible ici.
+
+— Immatriculation NIFONLINE (Personnes physiques) :
+• CIN (original + copie) • Carte de résident (étrangers)
+• Certificat de résidence et/ou Facture JIRAMA (< 3 mois)
+• Plan de repérage visé Fokontany
+• Récépissé + bordereau de versement IS/IR
+• Carte statistique
+• Titre de propriété du local (ou bail/domiciliation)
+• Procuration légalisée si représentant
+• Autres pièces originales (autorisation ministérielle, carte grise, licence)
+• Référence de la demande
+
+— Immatriculation NIFONLINE (Personnes morales) :
+• Statuts • CIN du 1er responsable (original+copie)
+• Carte de résident & CIPENS (étrangers)
+• Certificat de résidence du 1er resp. et/ou Facture JIRAMA (< 3 mois)
+• Plan de repérage visé Fokontany • Certificat d’existence
+• Récépissé + bordereau IS • Carte statistique
+• Titre de propriété (bail/domiciliation/lettre d’occupation)
+• Procuration légalisée si représentant
+• Autres pièces originales (autorisation ministérielle, carte grise, licence)
+• Référence de la demande
+
+— Déclaration IS (dossier) :
+• Formulaire CF3 (3 ex) • Carte fiscale • Carte statistique
+• Facture JIRAMA (si propriétaire)
+• Livret de famille ou CIN si facture au nom d’un parent décédé (justificatif de filiation)
+
+— Renouvellement Carte fiscale :
+• MAJ sur NIFONLINE • Bordereaux IS (3 ex) + CA des 3 dernières années
+NB : toute modification d’activité → via NIFONLINE.
+
+— Attestations :
+(Non-imposition véhicule) : Demande libre, carte grise (orig+copie), dernière attestation, bulletin de paie/avis de crédit/carte fiscale, certificat de résidence, copie CIN.
+(Résident fiscal) : Demande + déclaration sur l’honneur revenus (locaux/étrangers), carte de résident, carte d’identité professionnelle (si activité), fiche de paie, déclarations & reçus d’impôts (perso/société), liste des bénéficiaires.
+(Paiement IRSA) : Demande x2, copies déclarations IRSA + reçus + états nominatifs, carte fiscale employeur, certificat de résidence employé, CIN (copie), procuration si représentant, contact tél.
+(Non-imposition revenus/synthétique) : Demande x2, copie dernière attestation, certificat de résidence, lettre du tuteur visée Fokontany, carte de pension (si retraité), attestation de chômage (si chômeur), CIN (copie).
+
+— Cessation (PM) :
+Bilan de clôture signé, Statuts, Lettre de cessation (3 ex), PV de dissolution enregistré, copie dernière IS/IR + récépissés, justificatif de propriété (titre/rôle IFPB), dernier bail (ou résiliation), restitution carte fiscale, toutes déclarations (IRSA, IS, IR, TVA, licence) en règle.
+
+— Licences/Autorisations (ex. boissons alcoolisées) :
+Fiche de renseignement signée Fokontany, CIN (orig+copie), casier judiciaire <3 mois, certificat de résidence, plan de repérage visé Fokontany, plan du local, quittance FIPB ou titre de propriété, statut + nomination du gérant (si société), dérogation spéciale si nécessaire.
+
+Règles :
+1) Répondre dans la langue demandée (FR si la question est en FR, MG si MG). Si non précisé, utiliser la langue sélectionnée dans le site.
+2) Si l’utilisateur demande à aller à une page (Accueil, Services, Contact), ajouter EN FIN DE RÉPONSE une ligne : page= Accueil|Services|Contact (ou page= None si rien).
+3) Rester concis et pratique.`;
+
+    const KB_MG = `
+Ianao no agent d'information ho an'ny CF3 (DGI/MEF – Madagasikara).
+Valio miorina AMIN'IRETO ihany. Raha mihoatra io fangatahana io, lazao fa tsy ampy ny vaovao eto.
+
+— Fisoratana anarana NIFONLINE (Olon-tsotra) :
+• CIN (original+kop.) • Kara-mponina (vahiny)
+• Fanamarinam-ponenana sy/na Faktiora JIRAMA (< 3 vol.)
+• Sarin-toerana nosoniavin'ny sefom-pokontany
+• Rosia + taratasy fandoavana IS/IR
+• Kara-panjakana (statistique)
+• Taratasy fananan-trano (na bail/domiciliation)
+• Procuration légalizée raha solontena
+• Antontan-taratasy hafa (fahazoan-dalana ministera, kara-grisa, licence)
+• Laharana fanondroana
+
+— Fisoratana anarana NIFONLINE (Orinasa) :
+• Statuts • CIN 1er responsable (orig+kop.)
+• Kara-mponina & CIPENS (vahiny)
+• Fanamarinam-ponenana 1er responsable sy/na JIRAMA (< 3 vol.)
+• Sarin-toerana voamarina • Certificat d’existence
+• Rosia + bordereau IS • Kara-panjakana
+• Taratasy fananan-trano (bail/domiciliation/lettre d’occupation)
+• Procuration légalizée raha solontena
+• Antontan-taratasy hafa (ministera, kara-grisa, licence)
+• Laharana fanondroana
+
+— Fanambarana IS :
+• Taratasy fanambarana CF3 (3 dika) • Kara-fisitra • Kara-panjakana
+• Faktiora JIRAMA (raha tompon-trano)
+• Kopy livret de famille na CIN (raha anaran’ny ray aman-dreny maty ny faktiora → porofo maha-olona akaiky)
+
+— Fanavaozana Kara-Fisitra :
+• MAJ amin’ny NIFONLINE • Rosia IS (3 dika) + vola miditra 3 taona farany
+Fanamarihana : fiovana amin’ny asa → amin’ny NIFONLINE.
+
+— Taratasy fanamarinana :
+(Fiara tsy mandoa hetra) : Fangatahana, kara-grisa (orig+kop.), attestation farany, bulletin de paie/avis de crédit/kara-fisitra, fanamarinam-ponenana, kopy CIN.
+(Resident fiscal) : Fangatahana + fanambarana amin’ny voninahitra (vola miditra eto an-toerana/any ivelany), kara-mponina, kara-panondro matihanina (raha asa), fiche de paie, taratasy & rosia fandoavam-bola (manokana/orinasa), lisitry ny mpandray tombontsoa.
+(Fandoavana IRSA) : Fangatahana x2, kopia fanambarana IRSA + rosia + tatitra, kara-fisitra mpampiasa, fanamarinam-ponenan’ny mpiasa, kopia CIN, procuration raha solontena, laharana finday.
+(Tsy mandoa hetra amin’ny fidiram-bola/synthétique) : Fangatahana x2, kopia attestation farany, fanamarinam-ponenana, taratasy mpiantoka nosoniavin’ny Fokontany, karatra fisotroan-dronono (raha misotro ronono), attestation tsy an’asa (raha tsy miasa), kopia CIN.
+
+— Fampitsaharana asa (PM) :
+Tatitry ny famaranana ara-bola nosoniavin’ny tompon’andraikitra, Statuts, taratasy fangatahana (3 dika), PV famaranana voasoratra, kopia IS/IR farany + rosia, taratasy fananan-trano (titre/rôle IFPB), bail farany (na fanafoanana), famerenana kara-fisitra, fanambarana rehetra (IRSA, IS, IR, TVA, licence) ho ara-dalàna.
+
+— Fahazoan-dalana/Licence (oh: toaka) :
+Fiche de renseignement nosoniavin’ny sefom-pokontany, CIN (orig+kop.), casier judiciaire <3 vol., fanamarinam-ponenana, sarin-toerana nosoniavin’ny Fokontany, plan ny toerana, rosia FIPB na titre, statuts + fanendrena tale (raha orinasa), dérogation manokana raha ilaina.
+
+Fitsipika :
+1) Valio amin’ilay fiteny izay ampiasain'ilay olona amin’ny mpampiasa (FR na MG). Raha tsy mazava, araho ny fiteny voafidy ao amin’ny tranonkala.
+2) Raha misy fangatahana hifindra pejy (Accueil, Services, Contact), ampio eo AMBANY TSIPIKA iray : page= Accueil|Services|Contact (na page= None).
+3) Aoka ho fohy sy mazava.`;
+
+    // UI helpers
+const chatOpen = document.getElementById('chatOpen');
+const chatClose = document.getElementById('chatClose');
+const chatPanel = document.getElementById('chatPanel');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+/* --- Helpers UI --- */
+function showChat(){
+  chatPanel.classList.remove('hidden');
+  if(chatMessages.children.length === 0){
+    const l = document.documentElement.getAttribute('data-lang') || 'mg';
+    addBotMsg(l==='fr'
+      ? "Bonjour ! Je peux répondre sur les démarches CF3 (NIF, IS, attestations, etc.). Posez votre question."
+      : "Salama ! Afaka manampy momba ny serivisy CF3 (NIF, IS, taratasy fanamarinana, sns.). Manontania azafady.");
+  }
+  chatInput?.focus();
+}
+function hideChat(){ chatPanel.classList.add('hidden'); }
+
+chatOpen?.addEventListener('click', showChat);
+chatClose?.addEventListener('click', hideChat);
+
+function addUserMsg(text){
+  const d = document.createElement('div');
+  d.className = 'msg user';
+  d.textContent = text;
+  chatMessages.appendChild(d);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function addBotMsg(text){
+  const d = document.createElement('div');
+  d.className = 'msg bot';
+  d.textContent = text;
+  chatMessages.appendChild(d);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  maybeNavigate(text);
+}
+function addTyping(){
+  const d = document.createElement('div');
+  d.className = 'msg bot';
+  d.id = 'typing';
+  d.textContent = '…';
+  chatMessages.appendChild(d);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function removeTyping(){
+  document.getElementById('typing')?.remove();
+}
+
+/* --- Langue & contexte --- */
+const history = [];
+function getKB(){
+  const l = document.documentElement.getAttribute('data-lang') || 'mg';
+  return l === 'fr' ? KB_FR : KB_MG;
+}
+function currentLang(){ return document.documentElement.getAttribute('data-lang') || 'mg'; }
+
+/* --- Appel Groq (avec fallback modèle) --- */
+async function groqCompletion(messages, model){
+  const payload = { model, temperature: 0.2, messages };
+  const res = await fetch(GROQ_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GROQ_API_KEY}` },
+    body: JSON.stringify(payload)
+  });
+
+  const text = await res.text();
+  let data;
+  try { data = JSON.parse(text); } catch { /* pas JSON → gardera text brut */ }
+
+  if(!res.ok){
+    // Si le modèle est décommissionné, on remonte un signal spécial
+    const code = data?.error?.code || data?.error?.type || '';
+    const err = new Error(`Erreur API Groq: ${res.status} ${text}`);
+    if(String(code).includes('model_decommissioned')) err.decommissioned = true;
+    throw err;
+  }
+  return (data?.choices?.[0]?.message?.content || '').trim();
+}
+
+async function askGroq(question){
+  const sys = getKB();
+  const lang = currentLang();
+  const messages = [
+    { role: "system", content: sys },
+    { role: "system", content: `Langue sélectionnée sur le site : ${lang.toUpperCase()}.` },
+    ...history,
+    { role: "user", content: question }
+  ];
+
+  // Essaye le modèle principal puis les fallbacks si besoin
+  const modelsToTry = [MODEL_PRIMARY, ...MODEL_FALLBACKS];
+  let lastErr;
+  for(const m of modelsToTry){
+    try{
+      return await groqCompletion(messages, m);
+    }catch(e){
+      lastErr = e;
+      if(e.decommissioned) { continue; } // on tente le suivant
+      else { throw e; }
+    }
+  }
+  throw lastErr || new Error("Aucun modèle disponible.");
+}
+
+/* --- Navigation automatique selon 'page= ...' --- */
+function maybeNavigate(text){
+  const m = text.match(/page\s*=\s*(accueil|services|contact|none)/i);
+  if(!m) return;
+  const page = m[1].toLowerCase();
+  if(page === 'accueil'){ window.scrollTo({top:0,behavior:'smooth'}); }
+  if(page === 'services'){ document.getElementById('services')?.scrollIntoView({behavior:'smooth'}); }
+  if(page === 'contact'){ document.getElementById('contact')?.scrollIntoView({behavior:'smooth'}); }
+}
+
+/* --- Envoi UI --- */
+async function sendMsg(){
+  const q = (chatInput.value || '').trim();
+  if(!q) return;
+  addUserMsg(q);
+  chatInput.value = '';
+  addTyping();
+  try{
+    const ans = await askGroq(q);
+    removeTyping();
+    addBotMsg(ans);
+    history.push({role:'user', content:q});
+    history.push({role:'assistant', content:ans});
+    if(history.length > 10) history.splice(0, history.length - 10);
+  }catch(e){
+    removeTyping();
+    addBotMsg((currentLang()==='fr')
+      ? "Désolé, une erreur est survenue. Réessayez plus tard."
+      : "Miala tsiny, nisy olana. Andramo indray azafady.");
+    console.error(e);
+  }
+}
+chatSend?.addEventListener('click', sendMsg);
+chatInput?.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); sendMsg(); } });
+  </script>
+</body>
+</html>
