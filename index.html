@@ -220,12 +220,17 @@
         <div class="nav-right">
           <img src="./icons8-menu-48.png" id="menuBtn" class="menuBtnmobile btn ghost" aria-expanded="false" aria-controls="menu" alt="Menu"/>
           <div id="menu" class="nav-links" role="navigation" aria-label="Navigation principale">
-            <a href="#organisation">Organisation</a>
-            <a href="#services">Démarches</a>
+            <a class="i18n-fr" href="#organisation">Organisation</a>
+            <a class="i18n-mg" href="#organisation">Fandaminana</a>
+            <a class="i18n-fr"href="#services">Démarches</a>
+            <a class="i18n-mg"href="#services">Dingana</a>
             <a href="#is">IS</a>
-            <a href="#renouvellement">Renouvellement</a>
-            <a href="#attestations">Attestations</a>
-            <a href="#contact">Contact</a>
+            <a class="i18n-fr" href="#renouvellement">Renouvellement</a>
+            <a class="i18n-mg" href="#renouvellement">Fanavaozana</a>
+            <a class="i18n-fr" href="#attestations">Attestations</a>
+            <a class="i18n-mg" href="#attestations">Fanamarinana</a>
+            <a class="i18n-fr"  href="#contact">Contact</a>
+            <a class="i18n-mg"  href="#contact">Fifandraisana</a>
             <!-- Onglet Langue -->
             <label for="lang" style="position:absolute;left:-9999px">Langue</label>
             <select id="lang" class="lang-select" aria-label="Choisir la langue">
@@ -250,7 +255,7 @@
 
   <!-- Bouton lancement chat juste sous le switch -->
   <button id="chatOpen" class="chat-launch i18n-fr">💬 Posez vos questions</button>
-  <button id="chatOpen" class="chat-launch i18n-mg">💬 Apetraho ny fanontaniana</button>
+  <button id="chatOpen1" class="chat-launch i18n-mg">💬 Apetraho ny fanontaniana</button>
 
 
   <!-- Panneau chat -->
@@ -825,7 +830,7 @@
 
     /* ---------- CHATBOT CF3 (Groq) ---------- */
 const GROQ_API_KEY = "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";
-const GROQ_URL = "https://api.groq.com/v1/chat/completions";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 
 // Nouveau modèle recommandé
@@ -840,6 +845,7 @@ const KB_MG = `... (garde ton texte) ...`;
 
 /* --- UI Elements --- */
 const chatOpen = document.getElementById('chatOpen');
+const chatOpen1 = document.getElementById('chatOpen1');
 const chatClose = document.getElementById('chatClose');
 const chatPanel = document.getElementById('chatPanel');
 const chatMessages = document.getElementById('chatMessages');
@@ -863,6 +869,7 @@ function hideChat(){
 }
 
 chatOpen?.addEventListener('click', showChat);
+chatOpen1?.addEventListener('click', showChat);
 chatClose?.addEventListener('click', hideChat);
 
 function addUserMsg(text){
