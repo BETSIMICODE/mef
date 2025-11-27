@@ -249,7 +249,9 @@
   </div>
 
   <!-- Bouton lancement chat juste sous le switch -->
-  <button id="chatOpen" class="chat-launch">💬 Posez vos questions</button>
+  <button id="chatOpen" class="chat-launch i18n-fr">💬 Posez vos questions</button>
+  <button id="chatOpen" class="chat-launch i18n-mg">💬 Apetraho ny fanontaniana</button>
+
 
   <!-- Panneau chat -->
   <div id="chatPanel" class="chat-panel hidden" aria-live="polite">
@@ -289,7 +291,8 @@
           <div class="stat">Horaires CF3 : <strong>08:00–16:00</strong> (Lun–Ven)</div>
         </div>
         <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
-          <a class="btn" href="#services">Voir les démarches</a>
+          <a class="btn i18n-fr" href="#services">Voir les démarches</a>
+          <a class="btn i18n-mg" href="#services">Hijery dingana</a>
           <button class="btn ghost i18n-fr" onclick="window.print()">Imprimer la page</button>
           <button class="btn ghost i18n-mg" onclick="window.print()">Pirinty ny pejy</button>
         </div>
@@ -303,13 +306,18 @@
           <h2 class="i18n-fr">Organisation · DGI & CF3 </h2>
           <h2 class="i18n-mg">Fandaminana · DGI & CF3 </h2>
           <small class="i18n-fr">Le CF3 est rattaché à la DGI (MEF). Il comprend 4 divisions opérationnelles.</small>
-          <small class="i18n-mg">Ny CF3 dia singa mifandraika amin'ny DGI (MEF). Ahitana sampana fiadidina 4</small>
+          <small class="i18n-mg">Ny CF3 dia sampana mifandray amin'ny DGI (MEF). Ahitana sampana fiadidina 4</small>
         </div>
         <div class="grid cols-4 reveal">
-          <article class="card"><h3>Accueil</h3><p>Réception, information, orientation des contribuables, prise de rendez-vous.</p></article>
-          <article class="card"><h3>Enregistrement</h3><p>Immatriculation (NIF), tenue des dossiers, délivrance des cartes fiscales.</p></article>
-          <article class="card"><h3>Recette</h3><p>Encaissement, bordereaux, quittances et suivi des paiements.</p></article>
-          <article class="card"><h3>Contrôle</h3><p>Vérification, conformité documentaire et contrôle fiscal ciblé.</p></article>
+          <article class="card i18n-fr"><h3>Accueil</h3><p>Réception, information, orientation des contribuables, prise de rendez-vous.</p></article>
+          <article class="card i18n-fr"><h3>Enregistrement</h3><p>Immatriculation (NIF), tenue des dossiers, délivrance des cartes fiscales.</p></article>
+          <article class="card i18n-fr"><h3>Recette</h3><p>Encaissement, bordereaux, quittances et suivi des paiements.</p></article>
+          <article class="card i18n-fr"><h3>Contrôle</h3><p>Vérification, conformité documentaire et contrôle fiscal ciblé.</p></article>
+          <article class="card i18n-mg"><h3>Fandraisana</h3><p>Fandraisana, fanomezam-baovao, fitarihana ny mpandoa hetra, fakana fotoana.</p></article>
+          <article class="card i18n-mg"><h3>Fisoratana anarana</h3><p>Famoahana NIF, fitantanana antontan-taratasy, fizarana kara-panondro ara-ketra.</p></article>
+          <article class="card i18n-mg"><h3>Fitantanam-bola</h3><p>Fandraisana vola, taratasy fandoavana, rosia ary fanarahamaso ny fandoavam-bola.</p></article>
+          <article class="card i18n-mg"><h3>Fanaraha-maso</h3><p>Fanaraha-maso, fanamarinana antontan-taratasy ary fanaraha-maso ara-ketra mifantoka.</p></article>
+
         </div>
       </div>
     </section>
@@ -816,8 +824,8 @@
     modal?.addEventListener('close', ()=>{ if(modal.returnValue === 'ok') alert('Demande de rendez-vous enregistrée (démo).'); });
 
     /* ---------- CHATBOT CF3 (Groq) ---------- */
-    const GROQ_API_KEY = "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";
-    const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+    const GROQ_API_KEY = "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";
+    const GROQ_URL = "https://api.groq.com/openai/v1";
     // Nouveau modèle recommandé (ancien "llama3-8b-8192" décommissionné)
     const MODEL_PRIMARY = "llama-3.1-8b-instant";
     const MODEL_FALLBACKS = ["llama-3.1-70b-versatile"];
